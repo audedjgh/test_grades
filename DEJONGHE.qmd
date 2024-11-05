@@ -16,4 +16,5 @@ library(readr)
 
 grades <- read.csv(here("grades.csv"))
 ```
-
+# Question 2
+The data set contains `r NROW(grades)` grades.
