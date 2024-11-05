@@ -4,7 +4,8 @@ author: "Aude Dejonghe"
 format: html
 ---
 
-# Question 1
+# DATA SET
+## Question 1
 ```{r}
 here::i_am("test_grades.Rproj")
 library(here)
@@ -16,12 +17,13 @@ library(readr)
 
 grades <- read.csv(here("grades.csv"))
 ```
-# Question 2
+# SIMPLE ANALYSIS
+## Question 2
 
 The data set contains `r NROW(grades)` grades.
 
 
-# Question 3
+## Question 3
 
 ```{r}
 n_students <- grades |>
@@ -32,7 +34,7 @@ n_students <- grades |>
 There are `r n_students` students in the data set.
 
 
-# Question 4
+## Question 4
 
 ```{r}
 students <- grades |>
@@ -43,7 +45,7 @@ students |>
   knitr::kable()
 ```
 
-# Question 5
+## Question 5
 
 ```{r}
 ggplot(students, aes(x = group)) +
@@ -51,7 +53,7 @@ ggplot(students, aes(x = group)) +
 ```
 
 
-# Question 6
+## Question 6
 
 ```{r}
 group_averages <- grades |>
@@ -70,7 +72,7 @@ ggplot(group_averages, aes(x = group, y = avg_grade)) +
   theme_minimal()
 ```
 
-# Question 7
+## Question 7
 
 ```{r}
 ggplot(grades,aes(x = as.factor(module), y = grade )) +
@@ -82,6 +84,31 @@ ggplot(grades,aes(x = as.factor(module), y = grade )) +
   theme_minimal()
 ```
 
+# ATTENDANCE ANALYSIS
+## Question 8
+
+```{r}
+student_grade_counts <- grades |>
+  group_by(id, group) |>
+  summarise(
+    number_of_grades = n(),
+    .groups = 'drop'
+  ) |>
+  arrange(id)
+
+knitr::kable(slice_head(student_grade_counts, n=5))
+```
+```{r}
+summary_stats <- student_grade_counts |>
+  summarise(
+    Minimum = min(number_of_grades),
+    Maximum = max(number_of_grades),
+    Average = mean(number_of_grades),
+    Median = median(number_of_grades)
+  )
+
+knitr::kable(summary_stats)
+```
 
 
 
