@@ -70,4 +70,21 @@ ggplot(group_averages, aes(x = group, y = avg_grade)) +
   theme_minimal()
 ```
 
+# Question 7
+
+```{r}
+ggplot(grades,aes(x = as.factor(module), y = grade )) +
+  geom_boxplot(fill = "lightblue", alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.01, color = "darkblue") +
+  labs(x = "Module",
+       y = "Grade",
+       title = "Distribution of Grades by Module") +
+  theme_minimal()
+```
+
+
+
+
+
+
 
