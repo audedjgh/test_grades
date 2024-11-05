@@ -143,6 +143,21 @@ ggplot(grade_distribution, aes(x = as.factor(number_of_grades), y = number_of_st
   theme_minimal()
 ```
 
+## Question 11
+
+```{r}
+ggplot(martial_arts_counts,aes(y = as.factor(group), fill = as.factor(number_of_grades))) +
+  geom_bar(position ="fill") +
+  labs(x = "Group",
+       y = "Number of Grades",
+       title = "Number of Combat and Martial Arts Grades by Group",
+       fill = "Number of grades") +
+  theme_minimal()
+```
+
+
+
+
 
 
 
