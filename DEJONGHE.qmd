@@ -125,6 +125,23 @@ martial_arts_counts <- grades |>
 knitr::kable(slice_head(martial_arts_counts, n=5))
 ```
 
+## Question 10
+
+```{r}
+grade_distribution <- martial_arts_counts |>
+  group_by(number_of_grades) |>
+  summarise(
+    number_of_students = n()
+  ) |>
+  arrange(number_of_grades)
+
+ggplot(grade_distribution, aes(x = as.factor(number_of_grades), y = number_of_students)) +
+  geom_col(fill = "steelblue") +
+  labs(x = "Number of Grades",
+       y = "Number of Students",
+       title = "Distribution of Number of Grades in Combat and Martial Arts") +
+  theme_minimal()
+```
 
 
 
