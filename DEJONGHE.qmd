@@ -32,4 +32,14 @@ n_students <- grades |>
 There are `r n_students` students in the data set.
 
 
+# Question 4
+
+```{r}
+students <- grades |>
+  distinct(id, group) |>
+  arrange(id)
+students |>
+  slice_sample(n=5) |>
+  knitr::kable()
+```
 
