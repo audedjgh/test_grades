@@ -1,10 +1,12 @@
 ---
 title: "DEJONGHE"
 author: "Aude Dejonghe"
-format: html
+format: 
+  html: default
+  pdf: default
 ---
 
-# DATA SET
+# 1. DATA SET
 ## Question 1
 ```{r}
 here::i_am("test_grades.Rproj")
@@ -17,7 +19,7 @@ library(readr)
 
 grades <- read.csv(here("grades.csv"))
 ```
-# SIMPLE ANALYSIS
+# 2. SIMPLE ANALYSIS
 ## Question 2
 
 The data set contains `r NROW(grades)` grades.
@@ -84,7 +86,7 @@ ggplot(grades,aes(x = as.factor(module), y = grade )) +
   theme_minimal()
 ```
 
-# ATTENDANCE ANALYSIS
+# 3. ATTENDANCE ANALYSIS
 ## Question 8
 
 ```{r}
@@ -155,7 +157,36 @@ ggplot(martial_arts_counts,aes(y = as.factor(group), fill = as.factor(number_of_
   theme_minimal()
 ```
 
+# 4. GRADE ANALYSIS
+## Question 12
 
+```{r}
+student_course_averages <- grades |>
+  group_by(id, group, course) |>
+  summarise(
+    average_grade = mean(grade),
+    .groups = 'drop'
+  )
+```
+
+```{r}
+student_wide_averages <- student_course_averages |>
+  pivot_wider(
+    id_cols = c(id, group),
+    names_from = course,
+    values_from = average_grade
+  ) |>
+  arrange(id)
+
+knitr::kable(slice_head(
+  student_wide_averages |>
+    select(
+      id, 
+      group, 
+      `Alchemy and Hermetic Philosophy`, 
+      `Combat and Martial Arts of Ancient Egypt`), 
+  n=5),digits = 2)
+```
 
 
 
