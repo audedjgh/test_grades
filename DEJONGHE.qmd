@@ -43,3 +43,13 @@ students |>
   knitr::kable()
 ```
 
+# Question 5
+
+```{r}
+ggplot(students, aes(x = group)) +
+  geom_bar()
+```
+
+
+
+
