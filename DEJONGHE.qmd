@@ -17,4 +17,19 @@ library(readr)
 grades <- read.csv(here("grades.csv"))
 ```
 # Question 2
+
 The data set contains `r NROW(grades)` grades.
+
+
+# Question 3
+
+```{r}
+n_students <- grades |>
+  distinct(id) |>
+  nrow()
+```
+
+There are `r n_students` students in the data set.
+
+
+
