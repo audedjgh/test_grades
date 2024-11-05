@@ -51,5 +51,23 @@ ggplot(students, aes(x = group)) +
 ```
 
 
+# Question 6
+
+```{r}
+group_averages <- grades |>
+  filter(course == "Medicine and Herbalism") |>
+  group_by(group) |>
+  summarise(avg_grade = mean(grade)) |>
+  arrange(group)
+```
+
+```{r}
+ggplot(group_averages, aes(x = group, y = avg_grade)) +
+  geom_col(fill = "steelblue") +
+  labs(x = "Group", 
+       y = "Average Grade",
+       title = "Average Grades in Medicine and Herbalism by Group") +
+  theme_minimal()
+```
 
 
