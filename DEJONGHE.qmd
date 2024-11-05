@@ -1,0 +1,19 @@
+---
+title: "DEJONGHE"
+author: "Aude Dejonghe"
+format: html
+---
+
+# Question 1
+```{r}
+here::i_am("test_grades.Rproj")
+library(here)
+library(vroom)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(readr)
+
+grades <- read.csv(here("grades.csv"))
+```
+
