@@ -110,6 +110,21 @@ summary_stats <- student_grade_counts |>
 knitr::kable(summary_stats)
 ```
 
+## Question 9
+
+```{r}
+martial_arts_counts <- grades |>
+  filter(course == "Combat and Martial Arts of Ancient Egypt") |>
+  group_by(id, group) |>
+  summarise(
+    number_of_grades = n(),
+    .groups = 'drop'
+  ) |>
+  arrange(id)
+
+knitr::kable(slice_head(martial_arts_counts, n=5))
+```
+
 
 
 
